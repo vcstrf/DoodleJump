@@ -6,17 +6,22 @@ using System.Threading.Tasks;
 
 namespace DoodleJump
 {
-    public class Player
+    public class Bullet
     {
         public Physics physics;
         public Image sprite;
         private string _projectFolderPath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName.ToString();
 
-        public Player()
+        public Bullet(PointF pos)
         {
-            string playerSpritePath = Path.Combine(_projectFolderPath, $"Sprites\\floppa.png");
+            string playerSpritePath = Path.Combine(_projectFolderPath, $"Sprites\\bullet.png");
             sprite = Image.FromFile(playerSpritePath);
-            physics = new Physics(new PointF(100, 100), new Size(150, 150));
+            physics = new Physics(pos, new Size(50, 50));
+        }
+
+        public void MoveUp()
+        {
+            physics.transform.position.Y -= 15;
         }
 
         public void DrawSprite(Graphics g)
@@ -25,5 +30,3 @@ namespace DoodleJump
         }
     }
 }
-
-

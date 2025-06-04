@@ -15,14 +15,16 @@ namespace DoodleJump
         public int sizeX;
         public int sizeY;
         public bool isTouched;
+        private string _projectFolderPath = new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName.ToString();
 
         public Platform(PointF pos)
         {
-            //sprite = Properties.Resources.Platform;
-            sizeX = 60;
-            sizeY = 12;
+            string platformSpritePath = Path.Combine(_projectFolderPath, $"Sprites\\platform.png");
+            sprite = Image.FromFile(platformSpritePath);
+            sizeX = 150;
+            sizeY = 50;
             transform = new Transform(pos, new Size(sizeX, sizeY));
-            isTouched = true;
+            isTouched = false;
         }
 
         public void DrawSprite(Graphics g)
